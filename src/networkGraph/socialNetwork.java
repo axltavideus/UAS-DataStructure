@@ -8,6 +8,9 @@ public class socialNetwork {
     private static Graph graph = new Graph();
 
     public static void main(String[] args) {
+        // Uncomment the next line to add 100 users and predefined friendships automatically
+        // addMultipleUsersWithFriendships();
+
         while (true) {
             showMenu();
             int choice = scanner.nextInt();
@@ -20,7 +23,7 @@ public class socialNetwork {
                 case 5: findShortestPath(); break;
                 case 6: displayConnectedComponents(); break;
                 case 7: suggestFriends(); break;
-                case 8: System.exit(0);
+                case 8: System.exit(0); break;
                 default: System.out.println("Invalid choice, try again.");
             }
         }
@@ -55,19 +58,27 @@ public class socialNetwork {
         System.out.print("Enter second user id: ");
         int id2 = scanner.nextInt();
         scanner.nextLine(); // Consume newline
-        user user1 = new user("", id1); // Placeholder name
-        user user2 = new user("", id2); // Placeholder name
-        graph.addFriendship(user1, user2);
-        System.out.println("Friendship added between " + user1 + " and " + user2);
+        user user1 = graph.getUserById(id1);
+        user user2 = graph.getUserById(id2);
+        if (user1 != null && user2 != null) {
+            graph.addFriendship(user1, user2);
+            System.out.println("Friendship added between " + user1 + " and " + user2);
+        } else {
+            System.out.println("One or both users not found.");
+        }
     }
 
     private static void removeuser() {
         System.out.print("Enter user id: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Consume newline
-        user user = new user("", id); // Placeholder name
-        graph.removeuser(user);
-        System.out.println("user removed: " + user);
+        user user = graph.getUserById(id);
+        if (user != null) {
+            graph.removeuser(user);
+            System.out.println("user removed: " + user);
+        } else {
+            System.out.println("user not found.");
+        }
     }
 
     private static void removeFriendship() {
@@ -76,10 +87,14 @@ public class socialNetwork {
         System.out.print("Enter second user id: ");
         int id2 = scanner.nextInt();
         scanner.nextLine(); // Consume newline
-        user user1 = new user("", id1); // Placeholder name
-        user user2 = new user("", id2); // Placeholder name
-        graph.removeFriendship(user1, user2);
-        System.out.println("Friendship removed between " + user1 + " and " + user2);
+        user user1 = graph.getUserById(id1);
+        user user2 = graph.getUserById(id2);
+        if (user1 != null && user2 != null) {
+            graph.removeFriendship(user1, user2);
+            System.out.println("Friendship removed between " + user1 + " and " + user2);
+        } else {
+            System.out.println("One or both users not found.");
+        }
     }
 
     private static void findShortestPath() {
@@ -88,17 +103,21 @@ public class socialNetwork {
         System.out.print("Enter end user id: ");
         int endId = scanner.nextInt();
         scanner.nextLine(); // Consume newline
-        user startUser = new user("", startId); // Placeholder name
-        user endUser = new user("", endId); // Placeholder name
-        List<user> path = graph.shortestPath(startUser, endUser);
-        if (path != null && !path.isEmpty()) {
-            System.out.println("Shortest path: ");
-            for (user u : path) {
-                System.out.print(u + " ");
+        user startUser = graph.getUserById(startId);
+        user endUser = graph.getUserById(endId);
+        if (startUser != null && endUser != null) {
+            List<user> path = graph.shortestPath(startUser, endUser);
+            if (path != null && !path.isEmpty()) {
+                System.out.println("Shortest path: ");
+                for (user u : path) {
+                    System.out.print(u + " ");
+                }
+                System.out.println();
+            } else {
+                System.out.println("No path found between " + startUser + " and " + endUser);
             }
-            System.out.println();
         } else {
-            System.out.println("No path found between " + startUser + " and " + endUser);
+            System.out.println("One or both users not found.");
         }
     }
 
@@ -117,11 +136,41 @@ public class socialNetwork {
         System.out.print("Enter user id: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Consume newline
-        user user = new user("", id); // Placeholder name
-        List<user> suggestions = graph.suggestFriends(user);
-        System.out.println("Friend suggestions for " + user + ": ");
-        for (user u : suggestions) {
-            System.out.println(u);
+        user user = graph.getUserById(id);
+        if (user != null) {
+            List<user> suggestions = graph.suggestFriends(user);
+            System.out.println("Friend suggestions for " + user + ": ");
+            for (user u : suggestions) {
+                System.out.println(u);
+            }
+        } else {
+            System.out.println("user not found.");
+        }
+    }
+
+    private static void addMultipleUsersWithFriendships() {
+        // Adding users with specific names and friendships
+        String[] names = new String[]{"Brandon", "Breanda", "Jane", "User4", "User5", /* Add more names as needed */};
+        for (int i = 0; i < names.length; i++) {
+            user user = new user(names[i], i + 1);
+            graph.adduser(user);
+            System.out.println("user added: " + user);
+        }
+
+        // Establishing friendships
+        addFriendshipByName("Brandon", "Breanda");
+        addFriendshipByName("Brandon", "Jane");
+        // Add more friendships as needed...
+    }
+
+    private static void addFriendshipByName(String name1, String name2) {
+        user user1 = graph.getUserByName(name1);
+        user user2 = graph.getUserByName(name2);
+        if (user1 != null && user2 != null) {
+            graph.addFriendship(user1, user2);
+            System.out.println("Friendship added between " + user1 + " and " + user2);
+        } else {
+            System.out.println("One or both users not found.");
         }
     }
 }

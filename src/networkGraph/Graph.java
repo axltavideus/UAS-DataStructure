@@ -3,6 +3,7 @@ package networkGraph;
 import java.util.*;
 
 public class Graph {
+    private Map<Integer, user> userMap;
     private Map<user, List<user>> adjacencyList;
 
     public Graph() {
@@ -28,6 +29,19 @@ public class Graph {
         List<user> friendsOfuser2 = adjacencyList.get(user2);
         if (friendsOfuser1 != null) friendsOfuser1.remove(user2);
         if (friendsOfuser2 != null) friendsOfuser2.remove(user1);
+    }
+
+    public user getUserById(int id) {
+        return userMap.get(id);
+    }
+
+    public user getUserByName(String name) {
+        for (user u : userMap.values()) {
+            if (u.getName().equals(name)) {
+                return u;
+            }
+        }
+        return null;
     }
 
     public List<user> shortestPath(user start, user end) {
