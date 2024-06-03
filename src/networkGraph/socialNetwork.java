@@ -1,5 +1,6 @@
 package networkGraph;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class socialNetwork {
@@ -82,14 +83,45 @@ public class socialNetwork {
     }
 
     private static void findShortestPath() {
-        // Implement interaction for shortest path
+        System.out.print("Enter start user id: ");
+        int startId = scanner.nextInt();
+        System.out.print("Enter end user id: ");
+        int endId = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        user startUser = new user("", startId); // Placeholder name
+        user endUser = new user("", endId); // Placeholder name
+        List<user> path = graph.shortestPath(startUser, endUser);
+        if (path != null && !path.isEmpty()) {
+            System.out.println("Shortest path: ");
+            for (user u : path) {
+                System.out.print(u + " ");
+            }
+            System.out.println();
+        } else {
+            System.out.println("No path found between " + startUser + " and " + endUser);
+        }
     }
 
     private static void displayConnectedComponents() {
-        // Implement interaction for displaying connected components
+        List<List<user>> components = graph.connectedComponents();
+        System.out.println("Connected Components: ");
+        for (List<user> component : components) {
+            for (user u : component) {
+                System.out.print(u + " ");
+            }
+            System.out.println();
+        }
     }
 
     private static void suggestFriends() {
-        // Implement interaction for suggesting friends
+        System.out.print("Enter user id: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        user user = new user("", id); // Placeholder name
+        List<user> suggestions = graph.suggestFriends(user);
+        System.out.println("Friend suggestions for " + user + ": ");
+        for (user u : suggestions) {
+            System.out.println(u);
+        }
     }
 }

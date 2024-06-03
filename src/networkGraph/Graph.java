@@ -31,19 +31,81 @@ public class Graph {
     }
 
     public List<user> shortestPath(user start, user end) {
-        // Implement BFS or Dijkstra's algorithm
-        return new ArrayList<>(); // Placeholder
+        if (!adjacencyList.containsKey(start) || !adjacencyList.containsKey(end)) {
+            return null;
+        }
+        
+        Map<user, user> predecessors = new HashMap<>();
+        Queue<user> queue = new LinkedList<>();
+        Set<user> visited = new HashSet<>();
+
+        queue.add(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            user current = queue.poll();
+            if (current.equals(end)) {
+                return constructPath(predecessors, start, end);
+            }
+            for (user neighbor : adjacencyList.get(current)) {
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    predecessors.put(neighbor, current);
+                    queue.add(neighbor);
+                }
+            }
+        }
+        return null;
+    }
+
+    private List<user> constructPath(Map<user, user> predecessors, user start, user end) {
+        LinkedList<user> path = new LinkedList<>();
+        user step = end;
+        while (step != null) {
+            path.addFirst(step);
+            step = predecessors.get(step);
+        }
+        if (path.getFirst().equals(start)) {
+            return path;
+        }
+        return null;
     }
 
     public List<List<user>> connectedComponents() {
-        // Implement connected components algorithm
-        return new ArrayList<>(); // Placeholder
+        List<List<user>> components = new ArrayList<>();
+        Set<user> visited = new HashSet<>();
+
+        for (user u : adjacencyList.keySet()) {
+            if (!visited.contains(u)) {
+                List<user> component = new ArrayList<>();
+                dfs(u, visited, component);
+                components.add(component);
+            }
+        }
+        return components;
+    }
+
+    private void dfs(user u, Set<user> visited, List<user> component) {
+        visited.add(u);
+        component.add(u);
+        for (user neighbor : adjacencyList.get(u)) {
+            if (!visited.contains(neighbor)) {
+                dfs(neighbor, visited, component);
+            }
+        }
     }
 
     public List<user> suggestFriends(user user) {
-        // Implement friend suggestion logic
-        return new ArrayList<>(); // Placeholder
-    }
+        List<user> suggestions = new ArrayList<>();
+        Set<user> friends = new HashSet<>(adjacencyList.get(user));
 
-    
+        for (user friend : friends) {
+            for (user friendOfFriend : adjacencyList.get(friend)) {
+                if (!friendOfFriend.equals(user) && !friends.contains(friendOfFriend)) {
+                    suggestions.add(friendOfFriend);
+                }
+            }
+        }
+        return suggestions;
+    }
 }
