@@ -6,11 +6,14 @@ public class Graph {
     private Map<Integer, user> userMap;
     private Map<user, List<user>> adjacencyList;
 
+    // Constructor
     public Graph() {
-        adjacencyList = new HashMap<>();
+        this.userMap = new HashMap<>();
+        this.adjacencyList = new HashMap<>();
     }
 
     public void adduser(user user) {
+        userMap.put(user.getId(), user);
         adjacencyList.putIfAbsent(user, new ArrayList<>());
     }
 
@@ -22,6 +25,7 @@ public class Graph {
     public void removeuser(user user) {
         adjacencyList.values().forEach(e -> e.remove(user));
         adjacencyList.remove(user);
+        userMap.remove(user.getId());
     }
 
     public void removeFriendship(user user1, user user2) {
