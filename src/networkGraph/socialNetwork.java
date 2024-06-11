@@ -161,7 +161,16 @@ public class socialNetwork {
 
     private static void addMultipleUsersWithFriendships() {
         // Adding users with specific names and friendships
-        String[] names = new String[]{"Brandon", "Breanda", "Jane", "User4", "User5", /* Add more names as needed */};
+        String[] names = new String[]{
+            "david_matthewww", "vincentmn08", "steven.g200605", 
+            "kelvinvrdn", "desca.flx", "ccg_chessa", 
+            "venneth.n", "cindyanetaa", "angleine.d",
+            "snowsky_in", "ovanjas", "jehuda_sriwijaya",
+            "wiraawn__", "jhnafy9", "ray_app", "dikkylie",
+            "willimurmer_", "aurel_pricilla", "devon.studio.1801",
+            "johnhxzell", "kenjimahoney", "enriko.rasya", "nia.vlrn",
+            "priityaiss", "rifisded",
+        };
         for (int i = 0; i < names.length; i++) {
             user user = new user(names[i], i + 1);
             graph.adduser(user);
@@ -169,9 +178,10 @@ public class socialNetwork {
         }
 
         // Establishing friendships
-        addFriendshipByName("Brandon", "Breanda");
-        addFriendshipByName("Brandon", "Jane");
-        // Add more friendships as needed...
+        addFriendshipByName("david_matthewww", "vincentmn08");
+        addFriendshipByName("david_matthewww", "steven.g200605");
+        
+        
     }
 
     private static void addFriendshipByName(String name1, String name2) {
