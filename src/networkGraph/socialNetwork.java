@@ -169,7 +169,21 @@ public class socialNetwork {
             "wiraawn__", "jhnafy9", "ray_app", "dikkylie",
             "willimurmer_", "aurel_pricilla", "devon.studio.1801",
             "johnhxzell", "kenjimahoney", "enriko.rasya", "nia.vlrn",
-            "priityaiss", "rifisded",
+            "priityaiss", "rifisded", "florenzathalita","louis.wqtz", 
+            "justinkurniawan921", "andyyy.ko", "abielzchrs_","kei.nathan",
+            "shrimpdings", "j.sonnnn_", "ceciliannda_", "jesikanatt", "richard8_h",
+            "nicolasgerardwijaya", "luisfrnando_",  "altvincentt", "richieh_gt",
+            "grace_1112.4", "aikorch", "re_di_705", "jesssmiracle", "jessjsphine",
+            "kellyveisa", "wiranataureliuss", "marcellastelylukas", "claudioalvinoo_",
+            "ferlyferdianliee", "carrens.gif", "vennyvincenzo", "sherlinemargaretaa",
+            "awkalinnn", "vina245_", "weekent_", "jason_christiann", "_joycewongso",
+            "ternoob", "geb_lin", "stevenrickyy", "samuelmarcelllo", "wezetice",
+            "nathanaelvalent", "valentino_yerikho", "roy.pintooo", "bongtasya", "micheralles",
+            "fer.71", "orlandojefferson_", "vicky_revando055", "jvnsuryadi", "antonius_8824","roypintooo",
+            "jade_gabriel", "vintcen.n", "staviloe2", "raynardkurniawan", "justingbrll", "wronghousebro_",
+            "rubben_febrian", "_williamlie_", "wndaprcl", "kezia_stemi", "giovannitan_", "hegar.rianto", "gregoriosamuel_criswell",
+            "kevinreinhard16", "amadeusdarren_", "randyestevvan", "xander.yd", "jeremyhalim13", "jovvan99", "flo.aulia", "darrenlilipaly",
+            "reynard_yapari"
         };
         for (int i = 0; i < names.length; i++) {
             user user = new user(names[i], i + 1);
