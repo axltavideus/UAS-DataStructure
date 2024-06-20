@@ -126,4 +126,17 @@ public class Graph {
         }
         return suggestions;
     }
+
+    public void printAdjacencyList() {
+        for (Map.Entry<user, List<user>> entry : adjacencyList.entrySet()) {
+            user u = entry.getKey();
+            List<user> friends = entry.getValue();
+            System.out.print("-" + u + ": ");
+            for (user friend : friends) {
+                System.out.print(friend + " ");
+            }
+            System.out.println();
+            System.out.println();
+        }
+    }
 }

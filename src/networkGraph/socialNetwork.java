@@ -8,13 +8,12 @@ public class socialNetwork {
     private static Graph graph = new Graph();
 
     public static void main(String[] args) {
-        // Uncomment the next line to add 100 users and predefined friendships automatically
         addMultipleUsersWithFriendships();
 
         while (true) {
             showMenu();
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine(); 
             switch (choice) {
                 case 1: adduser(); break;
                 case 2: addFriendship(); break;
@@ -22,8 +21,9 @@ public class socialNetwork {
                 case 4: removeFriendship(); break;
                 case 5: findShortestPath(); break;
                 case 6: displayConnectedComponents(); break;
-                case 7: suggestFriends(); break;
-                case 8: System.exit(0); break;
+                case 7: displayAdjacencyList(); break;
+                case 8: suggestFriends(); break;
+                case 9: System.exit(0); break;
                 default: System.out.println("Invalid choice, try again.");
             }
         }
@@ -37,8 +37,9 @@ public class socialNetwork {
         System.out.println("4. Remove Friendship");
         System.out.println("5. Find Shortest Path");
         System.out.println("6. Display Connected Components");
-        System.out.println("7. Suggest Friends");
-        System.out.println("8. Exit");
+        System.out.println("7. Display Each Users Friends");
+        System.out.println("8. Suggest Friends");
+        System.out.println("9. Exit");
         System.out.print("Enter your choice: ");
     }
 
@@ -56,19 +57,12 @@ public class socialNetwork {
 
     private static void addFriendship() {
         System.out.println();
-        System.out.print("Enter first user id: ");
-        int id1 = scanner.nextInt();
-        System.out.print("Enter second user id: ");
-        int id2 = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-        user user1 = graph.getUserById(id1);
-        user user2 = graph.getUserById(id2);
-        if (user1 != null && user2 != null) {
-            graph.addFriendship(user1, user2);
-            System.out.println("Friendship added between " + user1 + " and " + user2);
-        } else {
-            System.out.println("One or both users not found.");
-        }
+        System.out.print("Enter first user name: ");
+        String name1 = scanner.nextLine();
+        System.out.print("Enter second user name: ");
+        String name2 = scanner.nextLine();
+
+        addFriendshipByName(name1, name2);
     }
 
     private static void removeuser() {
@@ -136,7 +130,7 @@ public class socialNetwork {
         System.out.println("Connected Components: ");
         for (List<user> component : components) {
             for (user u : component) {
-                System.out.print(u + " ");
+                System.out.print(u + "\n");
             }
             System.out.println();
         }
@@ -159,16 +153,22 @@ public class socialNetwork {
         }
     }
 
+    private static void displayAdjacencyList() { // Renamed and updated method
+        System.out.println();
+        System.out.println("Adjacency List: ");
+        graph.printAdjacencyList(); // Call the method to print the adjacency list
+    }
+
     private static void addMultipleUsersWithFriendships() {
         // Adding users with specific names and friendships
         String[] names = new String[]{
-            "david_matthewww", "vincentmn08", "steven.g200605", 
+            "david_matthewww", "vincentmn_08", "steven.g_200605", 
             "kelvinvrdn", "desca.flx", "ccg_chessa", 
             "venneth.n", "cindyanetaa", "angleine.d",
             "snowsky_in", "ovanjas", "jehuda_sriwijaya",
-            "wiraawn__", "jhnafy9", "ray_app", "dikkylie",
+            "wiraawn__", "jhnafy9", "ray_app", "dikkylie","drndillon13",
             "willimurmer_", "aurel_pricilla", "devon.studio.1801",
-            "johnhxzell", "kenjimahoney", "enriko.rasya", "nia.vlrn",
+            "johnxzell", "kenjimahoney", "enriko.rasya", "nia.vlrn",
             "priityaiss", "rifisded", "florenzathalita","louis.wqtz", 
             "justinkurniawan921", "andyyy.ko", "abielzchrs_","kei.nathan",
             "shrimpdings", "j.sonnnn_", "ceciliannda_", "jesikanatt", "richard8_h",
@@ -183,7 +183,7 @@ public class socialNetwork {
             "jade_gabriel", "vintcen.n", "staviloe2", "raynardkurniawan", "justingbrll", "wronghousebro_",
             "rubben_febrian", "_williamlie_", "wndaprcl", "kezia_stemi", "giovannitan_", "hegar.rianto", "gregoriosamuel_criswell",
             "kevinreinhard16", "amadeusdarren_", "randyestevvan", "xander.yd", "jeremyhalim13", "jovvan99", "flo.aulia", "darrenlilipaly",
-            "reynard_yapari"
+            "reynard_yapari", "ahza_rk", "dnxgt", "ricahrd8_h", "hson_j"
         };
         for (int i = 0; i < names.length; i++) {
             user user = new user(names[i], i + 1);
@@ -192,8 +192,8 @@ public class socialNetwork {
         }
 
         // Establishing friendships
-        addFriendshipByName("david_matthewww", "vincentmn08");
-        addFriendshipByName("david_matthewww", "steven.g200605");
+        addFriendshipByName("david_matthewww", "vincentmn_08");
+        addFriendshipByName("david_matthewww", "steven.g_200605");
         addFriendshipByName("david_matthewww","kelvinvrdn");
         addFriendshipByName("david_matthewww","desca.flx");
         addFriendshipByName("david_matthewww","venneth.n");
@@ -243,7 +243,7 @@ public class socialNetwork {
         addFriendshipByName("florenzathalita","louis.wqtz");
         addFriendshipByName("louis.wqtz","dnxgt");
         addFriendshipByName("dnxgt","abielzchrs_");
-        addFriendshipByName("abielzchrs_","kei,nathan");
+        addFriendshipByName("abielzchrs_","kei.nathan");
         addFriendshipByName("j.sonnnn_","ceciliannda_");
         addFriendshipByName("j.sonnnn_","nicolasgerardwijaya");
         addFriendshipByName("ceciliannda_","ricahrd8_h");
@@ -321,12 +321,12 @@ public class socialNetwork {
         addFriendshipByName("devon.studio.1801","staviloe2");
         addFriendshipByName("staviloe2","raynardkurniawan");
         addFriendshipByName("raynardkurniawan","_williamlie_");
-        addFriendshipByName("_williamlie_","wronghouse_bro");
+        addFriendshipByName("_williamlie_","wronghousebro_");
         addFriendshipByName("_williamlie_","rubben_febrian");
-        addFriendshipByName("wronghouse_bro","rubben_febrian");
-        addFriendshipByName("wronghouse_bro","willimurmer_");
+        addFriendshipByName("wronghousebro_","rubben_febrian");
+        addFriendshipByName("wronghousebro_","willimurmer_");
         addFriendshipByName("rubben_febrian","willimurmer_");
-        addFriendshipByName("wronghousebro_","devon.studio.180");
+        addFriendshipByName("wronghousebro_","devon.studio.1801");
         addFriendshipByName("wronghousebro_","justingbrll");
         addFriendshipByName("ahza_rk","hegar.rianto");
         addFriendshipByName("ahza_rk","snowsky_in");
@@ -341,7 +341,7 @@ public class socialNetwork {
         addFriendshipByName("wiraawn__","kezia_stemi");
         addFriendshipByName("jhnafy9","ray_app");
         addFriendshipByName("kezia_stemi","ray_app");
-        addFriendshipByName("kezia_stemi","giovannnitan_");
+        addFriendshipByName("kezia_stemi","giovannitan_");
         addFriendshipByName("kezia_stemi","wndaprcl");
         addFriendshipByName("ray_app","wndaprcl");
         
