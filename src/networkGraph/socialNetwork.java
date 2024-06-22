@@ -130,7 +130,7 @@ public class socialNetwork {
         System.out.println("Connected Components: ");
         for (List<user> component : components) {
             for (user u : component) {
-                System.out.print(u + "\n");
+                System.out.print(u + " - ");
             }
             System.out.println();
         }
@@ -177,12 +177,17 @@ public class socialNetwork {
             "kellyveisa", "wiranataureliuss", "marcellastelylukas", "claudioalvinoo_",
             "ferlyferdianliee", "carrens.gif", "vennyvincenzo", "sherlinemargaretaa",
             "awkalinnn", "vina245_", "weekent_", "jason_christiann", "_joycewongso",
-            "ternoob", "geb_lin", "stevenrickyy", "samuelmarcelllo", "wezetice",
-            "nathanaelvalent", "valentino_yerikho", "roy.pintooo", "bongtasya", "micheralles",
-            "fer.71", "orlandojefferson_", "vicky_revando055", "jvnsuryadi", "antonius_8824","roypintooo",
-            "jade_gabriel", "vintcen.n", "staviloe2", "raynardkurniawan", "justingbrll", "wronghousebro_",
-            "rubben_febrian", "_williamlie_", "wndaprcl", "kezia_stemi", "giovannitan_", "hegar.rianto", "gregoriosamuel_criswell",
-            "kevinreinhard16", "amadeusdarren_", "randyestevvan", "xander.yd", "jeremyhalim13", "jovvan99", "flo.aulia", "darrenlilipaly",
+            "ternoob", "geb_lin", "stevenrickyy", "samuelmarcelllo", 
+            "wezetice","nathanaelvalent", "valentino_yerikho", 
+            "roy.pintooo", "bongtasya", "micheralles",
+            "fer.71", "orlandojefferson_", "vicky_revando055", 
+            "jvnsuryadi", "antonius_8824","roypintooo",
+            "jade_gabriel", "vintcen.n", "staviloe2", "raynardkurniawan", 
+            "justingbrll", "wronghousebro_",
+            "rubben_febrian", "_williamlie_", "wndaprcl", "kezia_stemi", 
+            "giovannitan_", "hegar.rianto", "gregoriosamuel_criswell",
+            "kevinreinhard16", "amadeusdarren_", "randyestevvan", "xander.yd", 
+            "jeremyhalim13", "jovvan99", "flo.aulia", "darrenlilipaly",
             "reynard_yapari", "ahza_rk", "dnxgt", "ricahrd8_h", "hson_j"
         };
         for (int i = 0; i < names.length; i++) {
@@ -344,7 +349,7 @@ public class socialNetwork {
         addFriendshipByName("kezia_stemi","giovannitan_");
         addFriendshipByName("kezia_stemi","wndaprcl");
         addFriendshipByName("ray_app","wndaprcl");
-        
+
         
     }
 
